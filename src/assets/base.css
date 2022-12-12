@@ -1,0 +1,8 @@
+body {
+  font-family: Verdana, Helvetica, sans-serif;
+  background-color: hsl(50, 0%, 8%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 1em;
+  font-size: clamp(.5rem, 2.5vmin, 1.5rem);
+}
