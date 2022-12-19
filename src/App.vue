@@ -24,113 +24,111 @@
       </div>
     </div>
   </header>
-  <div class="main">
-    <main>
-      <div class="pic">
-        <img class="art" :src="art"/>
-      </div>
-      <div class="end-screen-dimmer" @click="closeOverlay" v-if="showOverlay">
-        <div class="end-modal">
-          <div @click="showOverlay = false" class="modal-close">&times;</div>
-          <div class="modal-container">
-            <div class="modal-title">
-              STATISTICS
-            </div>
-            <div class="general-stats">
-              <div class="stat">
-                {{ getGamesPlayed() }}
-                <div class="stat-label">
-                  Played
-                </div>
-              </div>
-              <div class="stat">
-                {{ getWinPercentage() }}
-                <div class="stat-label">
-                  Win %
-                </div>
-              </div>
-              <div class="stat">
-                {{ getAvgTime() }}
-                <div class="stat-label">
-                  Avg Time
-                </div>
-              </div>
-              <div class="stat">
-                {{ getStreak() }}
-                <div class="stat-label">
-                  Current Streak
-                </div>
-              </div>
-              <div class="stat">
-                {{ getMaxStreak() }}
-                <div class="stat-label">
-                  Max Streak
-                </div>
+  <main class="main">
+    <div class="pic">
+      <img class="art" :src="art"/>
+    </div>
+    <div class="end-screen-dimmer" @click="closeOverlay" v-if="showOverlay">
+      <div class="end-modal">
+        <div @click="showOverlay = false" class="modal-close">&times;</div>
+        <div class="modal-container">
+          <div class="modal-title">
+            STATISTICS
+          </div>
+          <div class="general-stats">
+            <div class="stat">
+              {{ getGamesPlayed() }}
+              <div class="stat-label">
+                Played
               </div>
             </div>
-            <div class="modal-title">
-              TIME DISTRIBUTION
+            <div class="stat">
+              {{ getWinPercentage() }}
+              <div class="stat-label">
+                Win %
+              </div>
             </div>
-            <div class="modal-title">
-              COMING SOON!
+            <div class="stat">
+              {{ getAvgTime() }}
+              <div class="stat-label">
+                Avg Time
+              </div>
             </div>
-            <div class="time-dist">
-              <!-- <canvas id="timeDistChart"></canvas> -->
+            <div class="stat">
+              {{ getStreak() }}
+              <div class="stat-label">
+                Current Streak
+              </div>
             </div>
+            <div class="stat">
+              {{ getMaxStreak() }}
+              <div class="stat-label">
+                Max Streak
+              </div>
+            </div>
+          </div>
+          <div class="modal-title">
+            TIME DISTRIBUTION
+          </div>
+          <div class="modal-title">
+            COMING SOON!
+          </div>
+          <div class="time-dist">
+            <!-- <canvas id="timeDistChart"></canvas> -->
           </div>
         </div>
       </div>
-      <div class="answer-section">
-        <div class="prompt">
-          <div class="word" v-for="wordLength of promptSpaces">
-            <div class="letter-holder"  v-for="index in wordLength" :key="index">
-              <div class="letter"></div>
-              <div class="bar status-background-color"></div>
-            </div>
-            <div class="space"></div>
+    </div>
+    <div class="answer-section">
+      <div class="prompt">
+        <div class="word" v-for="wordLength of promptSpaces">
+          <div class="letter-holder"  v-for="index in wordLength" :key="index">
+            <div class="letter"></div>
+            <div class="bar status-background-color"></div>
           </div>
-        </div>
-        <div class="status-text-color" id="statusText">
-          GUESSES REMAINING: {{gameData.guessesRemaining}}
-        </div>
-        <div class="status-text-color">
-          TIME TAKEN: {{ minutesTaken }}:{{ secondsTaken }}
+          <div class="space"></div>
         </div>
       </div>
-      <div class="keyboard">
-        <button class="key" data-key="Q" @click="keyClick">Q</button>
-        <button class="key" data-key="W" @click="keyClick">W</button>
-        <button class="key" data-key="E" @click="keyClick">E</button>
-        <button class="key" data-key="R" @click="keyClick">R</button>
-        <button class="key" data-key="T" @click="keyClick">T</button>
-        <button class="key" data-key="Y" @click="keyClick">Y</button>
-        <button class="key" data-key="U" @click="keyClick">U</button>
-        <button class="key" data-key="I" @click="keyClick">I</button>
-        <button class="key" data-key="O" @click="keyClick">O</button>
-        <button class="key" data-key="P" @click="keyClick">P</button>
-        <div class="space-0asda"></div>
-        <button class="key" data-key="A" @click="keyClick">A</button>
-        <button class="key" data-key="S" @click="keyClick">S</button>
-        <button class="key" data-key="D" @click="keyClick">D</button>
-        <button class="key" data-key="F" @click="keyClick">F</button>
-        <button class="key" data-key="G" @click="keyClick">G</button>
-        <button class="key" data-key="H" @click="keyClick">H</button>
-        <button class="key" data-key="J" @click="keyClick">J</button>
-        <button class="key" data-key="K" @click="keyClick">K</button>
-        <button class="key" data-key="L" @click="keyClick">L</button>
-        <div class="space"></div>
-        <button class="key large hidden"></button>
-        <button class="key" data-key="Z" @click="keyClick">Z</button>
-        <button class="key" data-key="X" @click="keyClick">X</button>
-        <button class="key" data-key="C" @click="keyClick">C</button>
-        <button class="key" data-key="V" @click="keyClick">V</button>
-        <button class="key" data-key="B" @click="keyClick">B</button>
-        <button class="key" data-key="N" @click="keyClick">N</button>
-        <button class="key" data-key="M" @click="keyClick">M</button>
-        <button class="key large hidden" @click="keyClick"></button>
+      <div class="status-text-color" id="statusText">
+        GUESSES REMAINING: {{gameData.guessesRemaining}}
       </div>
-    </main>
-  </div>
+      <div class="status-text-color">
+        TIME TAKEN: {{ minutesTaken }}:{{ secondsTaken }}
+      </div>
+    </div>
+    <div class="keyboard">
+      <button class="key" data-key="Q" @click="keyClick">Q</button>
+      <button class="key" data-key="W" @click="keyClick">W</button>
+      <button class="key" data-key="E" @click="keyClick">E</button>
+      <button class="key" data-key="R" @click="keyClick">R</button>
+      <button class="key" data-key="T" @click="keyClick">T</button>
+      <button class="key" data-key="Y" @click="keyClick">Y</button>
+      <button class="key" data-key="U" @click="keyClick">U</button>
+      <button class="key" data-key="I" @click="keyClick">I</button>
+      <button class="key" data-key="O" @click="keyClick">O</button>
+      <button class="key" data-key="P" @click="keyClick">P</button>
+      <div class="space-0asda"></div>
+      <button class="key" data-key="A" @click="keyClick">A</button>
+      <button class="key" data-key="S" @click="keyClick">S</button>
+      <button class="key" data-key="D" @click="keyClick">D</button>
+      <button class="key" data-key="F" @click="keyClick">F</button>
+      <button class="key" data-key="G" @click="keyClick">G</button>
+      <button class="key" data-key="H" @click="keyClick">H</button>
+      <button class="key" data-key="J" @click="keyClick">J</button>
+      <button class="key" data-key="K" @click="keyClick">K</button>
+      <button class="key" data-key="L" @click="keyClick">L</button>
+      <div class="space"></div>
+      <button class="key large hidden"></button>
+      <button class="key" data-key="Z" @click="keyClick">Z</button>
+      <button class="key" data-key="X" @click="keyClick">X</button>
+      <button class="key" data-key="C" @click="keyClick">C</button>
+      <button class="key" data-key="V" @click="keyClick">V</button>
+      <button class="key" data-key="B" @click="keyClick">B</button>
+      <button class="key" data-key="N" @click="keyClick">N</button>
+      <button class="key" data-key="M" @click="keyClick">M</button>
+      <button class="key large hidden" @click="keyClick"></button>
+    </div>
+  </main>
 </template>
 
 
@@ -392,7 +390,10 @@ export default {
       this.gameData.history.forEach(game => {
         sum += game.timeTaken
       })
-      return Math.round(sum / this.gameData.history.length)
+      if (this.gameData.history.length > 0) {
+        return Math.round(sum / this.gameData.history.length)
+      }
+      return 0
     },
     getStreak() {
       return this.gameData.currentStreak
@@ -422,12 +423,13 @@ export default {
   }
   .main {
     display: flex; 
+    min-height: 90vh;
     flex-direction: column; 
     justify-content: center; 
     align-items: center;
   }
   .art {
-    max-width: 100%;
+    max-width: 80%;
     height: auto;
     display:block;
     margin-left:auto;
@@ -564,8 +566,8 @@ export default {
     flex-direction: column;
   }
   .bar {
-    width: 2.3em;
-    height: .2em;
+    width: 1em;
+    height: 3px;
     margin: .2em;
   }
   .space {
@@ -577,9 +579,9 @@ export default {
 }
 .keyboard {
   display: grid;
-  grid-template-columns: repeat(20, minmax(auto, 1.25em));
+  grid-template-columns: repeat(20, minmax(auto, 2em));
   grid-auto-rows: 3em;
-  gap: .25em;
+  gap: .3em;
   justify-content: center;
 }
 .key {
