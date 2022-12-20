@@ -25,6 +25,14 @@
     </div>
   </header>
   <main class="main">
+    <div class="status">
+        <div class="status-box status-text-color" id="statusText">
+          GUESSES: {{gameData.guessesRemaining}}
+        </div>
+        <div class="status-box status-text-color">
+          TIME: {{ minutesTaken }}:{{ secondsTaken }}
+        </div>
+      </div>
     <div class="pic">
       <img class="art" :src="art"/>
     </div>
@@ -76,6 +84,9 @@
           <div class="time-dist">
             <!-- <canvas id="timeDistChart"></canvas> -->
           </div>
+          <div class="modal-title">
+            Next Descr·ai·be in {{ timeToNextGame }}
+          </div>
         </div>
       </div>
     </div>
@@ -88,12 +99,6 @@
           </div>
           <div class="space"></div>
         </div>
-      </div>
-      <div class="status-text-color" id="statusText">
-        GUESSES REMAINING: {{gameData.guessesRemaining}}
-      </div>
-      <div class="status-text-color">
-        TIME TAKEN: {{ minutesTaken }}:{{ secondsTaken }}
       </div>
     </div>
     <div class="keyboard">
@@ -184,11 +189,13 @@ export default {
         maxStreak: 0
       },
       showOverlay: false,
-      gameDateOrigin: 19344
+      gameDateOrigin: 19344,
+      timeToNextGame: "--:--:--"
     }
   },
   mounted() {
     this.initializeGame()
+    this.trackTimeToNextGame()
     document.addEventListener("keydown", this.keypress)
   },
   methods: {
@@ -406,6 +413,26 @@ export default {
     },
     getToday(){
       return Math.floor(Date.now() / 1000 / 60 / 60 / 24)
+    },
+    trackTimeToNextGame() {
+      let msToMidnight = this.msTillNextUtcDay()
+      let hour = Math.floor(msToMidnight / 1000 / 60 / 60).toString().padStart(2, "0")
+      let minute = Math.floor(msToMidnight / 1000 / 60 % 60).toString().padStart(2, "0")
+      let second = Math.floor(msToMidnight / 1000 % 60).toString().padStart(2, "0")
+      this.timeToNextGame = `${hour}:${minute}:${second}`
+      setInterval(() => {
+        msToMidnight = this.msTillNextUtcDay()
+        hour = Math.floor(msToMidnight / 1000 / 60 / 60).toString().padStart(2, "0")
+        minute = Math.floor(msToMidnight / 1000 / 60 % 60).toString().padStart(2, "0")
+        second = Math.floor(msToMidnight / 1000 % 60).toString().padStart(2, "0")
+      this.timeToNextGame = `${hour}:${minute}:${second}`
+      }, 1000)
+    },
+    msTillNextUtcDay() {
+      const msInDay = 86400000; // 24 * 60 * 60 * 1000
+      const date = Date.now() // time since midnight on January 1, 1970, UTC (ecmascript epoch)
+      const msNextDay = Math.ceil(date/msInDay) * msInDay; //gets the time of in ms of the start of the next utc day in ecmascript epoch "format"
+      return msNextDay - date; //Subtracts current time from start of next day
     }
   }
 }
@@ -513,6 +540,15 @@ export default {
     font-size: .4em;
     max-width: 80%;
   }
+  .status {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1em;
+  }
+  .status-box {
+    padding: 0em 1em 0em 1em;
+    border: 1px solid var(--color-tone-1);
+  }
   .status-text-color {
     color: hsl(var(--statusHue, 110), 33%, 50%);
     font-size: 1.5em;
@@ -531,7 +567,6 @@ export default {
     flex-direction: column;
     justify-content: center; 
     align-items: center;
-    margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     gap: 1.5rem;
     justify-content: center; 
