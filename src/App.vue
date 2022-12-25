@@ -450,10 +450,13 @@ export default {
   }
   .main {
     display: flex; 
-    min-height: 90vh;
+    min-height: 85vh;
     flex-direction: column; 
     justify-content: center; 
     align-items: center;
+  }
+  .pic {
+    flex-grow: 1;
   }
   .art {
     max-width: 80%;
