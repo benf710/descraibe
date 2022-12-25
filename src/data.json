@@ -26,5 +26,37 @@
   {
     "prompt": "base jumping the burj khalifa",
     "image": "art9.png"
+  },
+  {
+    "prompt": "A look into the abyss",
+    "image": "art10.png"
+  },
+  {
+    "prmot": "The view from the sears tower",
+    "image": "art11.png"
+  },
+  {
+    "prmot": "hacking the mainframe",
+    "image": "art12.png"
+  },
+  {
+    "prmot": "christmas morning",
+    "image": "art13.png"
+  },
+  {
+    "prmot": "life after pandemic",
+    "image": "art14.png"
+  },
+  {
+    "prmot": "Exploring the rainforest",
+    "image": "art15.png"
+  },
+  {
+    "prmot": "The greatest blizzard of all time",
+    "image": "art16.png"
+  },
+  {
+    "prompt": "A racoon made of dimes",
+    "image": "art17.png"
   }
 ]
