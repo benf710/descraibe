@@ -450,7 +450,7 @@ export default {
   }
   .main {
     display: flex; 
-    min-height: 85vh;
+    min-height: 75vh;
     flex-direction: column; 
     justify-content: center; 
     align-items: center;
