@@ -58,5 +58,41 @@
   {
     "prompt": "A racoon made of dimes",
     "image": "art17.png"
+  },
+  {
+    "prompt": "I failed to create a prompt for this day...",
+    "image": "art10.png"
+  },
+  {
+    "prompt": "Fish walking",
+    "image": "art18.png"
+  },
+  {
+    "prompt": "The edge of the earth",
+    "image": "art19.png"
+  },  
+  {
+    "prompt": "A window to the past",
+    "image": "art20.png"
+  },
+  {
+    "prompt": "Grandmas secret recipe",
+    "image": "art21.png"
+  },
+  {
+    "prompt": "Let them eat cake",
+    "image": "art22.png"
+  },
+  {
+    "prompt": "A tale of two cities",
+    "image": "art23.png"
+  },
+  {
+    "prompt": "The first day of spring",
+    "image": "art24.png"
+  },
+  {
+    "prompt": "A home for the holidays",
+    "image": "art25.png"
   }
 ]
