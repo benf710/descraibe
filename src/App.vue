@@ -1,29 +1,5 @@
 <template>
-  <header>
-    <div class="menu">
-      <div class="title">Descr·ai·be</div>
-      <div class="menu-buttons">
-        <!-- <button type="button" class="menu-button">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="4 4 24 24" width="24" class="game-icon" data-testid="icon-help">
-            <path fill="var(--color-tone-1)" d="M14.8333 23H17.1666V20.6667H14.8333V23ZM15.9999 4.33334C9.55992 4.33334 4.33325 9.56001 4.33325 16C4.33325 22.44 9.55992 27.6667 15.9999 27.6667C22.4399 27.6667 27.6666 22.44 27.6666 16C27.6666 9.56001 22.4399 4.33334 15.9999 4.33334ZM15.9999 25.3333C10.8549 25.3333 6.66659 21.145 6.66659 16C6.66659 10.855 10.8549 6.66668 15.9999 6.66668C21.1449 6.66668 25.3333 10.855 25.3333 16C25.3333 21.145 21.1449 25.3333 15.9999 25.3333ZM15.9999 9.00001C13.4216 9.00001 11.3333 11.0883 11.3333 13.6667H13.6666C13.6666 12.3833 14.7166 11.3333 15.9999 11.3333C17.2833 11.3333 18.3333 12.3833 18.3333 13.6667C18.3333 16 14.8333 15.7083 14.8333 19.5H17.1666C17.1666 16.875 20.6666 16.5833 20.6666 13.6667C20.6666 11.0883 18.5783 9.00001 15.9999 9.00001Z">
-            </path>
-          </svg>
-        </button> -->
-        <button type="button" @click="renderOverlay()" class="menu-button">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="4 4 24 24" width="24" class="game-icon" data-testid="icon-statistics">
-            <path fill="var(--color-tone-1)" d="M20.6666 14.8333V5.5H11.3333V12.5H4.33325V26.5H27.6666V14.8333H20.6666ZM13.6666 7.83333H18.3333V24.1667H13.6666V7.83333ZM6.66659 14.8333H11.3333V24.1667H6.66659V14.8333ZM25.3333 24.1667H20.6666V17.1667H25.3333V24.1667Z">
-            </path>
-          </svg>
-        </button>
-        <!-- <button type="button" @click="clearStorage()" class="menu-button">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-            <path fill="var(--color-tone-1)" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-          </svg>
-        </button> -->
-      </div>
-    </div>
-  </header>
+  <page-header/>
   <main class="main">
     <div class="status">
         <div class="status-box status-text-color" id="statusText">
@@ -36,103 +12,9 @@
     <div class="pic">
       <img class="art" :src="art"/>
     </div>
-    <div class="end-screen-dimmer" @click="closeOverlay" v-if="showOverlay">
-      <div class="end-modal">
-        <div @click="showOverlay = false" class="modal-close">&times;</div>
-        <div class="modal-container">
-          <div class="modal-title">
-            STATISTICS
-          </div>
-          <div class="general-stats">
-            <div class="stat">
-              {{ getGamesPlayed() }}
-              <div class="stat-label">
-                Played
-              </div>
-            </div>
-            <div class="stat">
-              {{ getWinPercentage() }}
-              <div class="stat-label">
-                Win %
-              </div>
-            </div>
-            <div class="stat">
-              {{ getAvgTime() }}
-              <div class="stat-label">
-                Avg Time
-              </div>
-            </div>
-            <div class="stat">
-              {{ getStreak() }}
-              <div class="stat-label">
-                Current Streak
-              </div>
-            </div>
-            <div class="stat">
-              {{ getMaxStreak() }}
-              <div class="stat-label">
-                Max Streak
-              </div>
-            </div>
-          </div>
-          <div class="modal-title">
-            TIME DISTRIBUTION
-          </div>
-          <div class="modal-title">
-            COMING SOON!
-          </div>
-          <div class="time-dist">
-            <!-- <canvas id="timeDistChart"></canvas> -->
-          </div>
-          <div class="modal-title">
-            Next Descr·ai·be in {{ timeToNextGame }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="answer-section">
-      <div class="prompt">
-        <div class="word" v-for="wordLength of promptSpaces">
-          <div class="letter-holder"  v-for="index in wordLength" :key="index">
-            <div class="letter"></div>
-            <div class="bar status-background-color"></div>
-          </div>
-          <div class="space"></div>
-        </div>
-      </div>
-    </div>
-    <div class="keyboard">
-      <button class="key" data-key="Q" @click="keyClick">Q</button>
-      <button class="key" data-key="W" @click="keyClick">W</button>
-      <button class="key" data-key="E" @click="keyClick">E</button>
-      <button class="key" data-key="R" @click="keyClick">R</button>
-      <button class="key" data-key="T" @click="keyClick">T</button>
-      <button class="key" data-key="Y" @click="keyClick">Y</button>
-      <button class="key" data-key="U" @click="keyClick">U</button>
-      <button class="key" data-key="I" @click="keyClick">I</button>
-      <button class="key" data-key="O" @click="keyClick">O</button>
-      <button class="key" data-key="P" @click="keyClick">P</button>
-      <div class="space-0asda"></div>
-      <button class="key" data-key="A" @click="keyClick">A</button>
-      <button class="key" data-key="S" @click="keyClick">S</button>
-      <button class="key" data-key="D" @click="keyClick">D</button>
-      <button class="key" data-key="F" @click="keyClick">F</button>
-      <button class="key" data-key="G" @click="keyClick">G</button>
-      <button class="key" data-key="H" @click="keyClick">H</button>
-      <button class="key" data-key="J" @click="keyClick">J</button>
-      <button class="key" data-key="K" @click="keyClick">K</button>
-      <button class="key" data-key="L" @click="keyClick">L</button>
-      <div class="space"></div>
-      <button class="key large hidden"></button>
-      <button class="key" data-key="Z" @click="keyClick">Z</button>
-      <button class="key" data-key="X" @click="keyClick">X</button>
-      <button class="key" data-key="C" @click="keyClick">C</button>
-      <button class="key" data-key="V" @click="keyClick">V</button>
-      <button class="key" data-key="B" @click="keyClick">B</button>
-      <button class="key" data-key="N" @click="keyClick">N</button>
-      <button class="key" data-key="M" @click="keyClick">M</button>
-      <button class="key large hidden" @click="keyClick"></button>
-    </div>
+    <!-- End screen dimmer? -->
+    <answer-section/>
+    <game-keyboard/>
   </main>
 </template>
 
@@ -140,8 +22,16 @@
 <script>
 import Chart from 'chart.js/auto'
 import PromptData from '@/data.json'
+import PageHeader from '@/components/PageHeader.vue'
+import AnswerSection from '@/components/AnswerSection.vue'
+import GameKeyboard from '@/components/GameKeyboard.vue'
 
 export default {
+  components: {
+    PageHeader,
+    AnswerSection,
+    GameKeyboard
+  },
   computed: {
     promptSpaces(){
       const promptWordsLengths = [];

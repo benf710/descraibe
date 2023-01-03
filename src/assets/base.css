@@ -1,8 +1,38 @@
-:root {
+body {
+  --color-tone-1: hsl(50, 0%, 8%, 100%);
+  --background-color: hsl(1, 0%, 80%);
+  font-family: Verdana, Helvetica, sans-serif;
+  background-color: var(--background-color);
+  min-height: 100vh;
+  margin: 0;
+  padding: 1em;
+  font-size: clamp(.5rem, 2.5vmin, 1.5rem);
+}
+body.dark-theme {
   --color-tone-1: hsl(1, 0%, 80%);
   --background-color: hsl(50, 0%, 8%, 100%);
+  font-family: Verdana, Helvetica, sans-serif;
+  background-color: var(--background-color);
+  min-height: 100vh;
+  margin: 0;
+  padding: 1em;
+  font-size: clamp(.5rem, 2.5vmin, 1.5rem);
 }
-body {
+@media (prefers-color-scheme: dark) {
+  body {
+    --color-tone-1: hsl(1, 0%, 80%);
+    --background-color: hsl(50, 0%, 8%, 100%);
+    font-family: Verdana, Helvetica, sans-serif;
+    background-color: var(--background-color);
+    min-height: 100vh;
+    margin: 0;
+    padding: 1em;
+    font-size: clamp(.5rem, 2.5vmin, 1.5rem);
+  }
+}
+body.light-theme {
+  --color-tone-1: hsl(50, 0%, 8%, 100%);
+  --background-color: hsl(1, 0%, 80%);
   font-family: Verdana, Helvetica, sans-serif;
   background-color: var(--background-color);
   min-height: 100vh;
