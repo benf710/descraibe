@@ -60,6 +60,10 @@
     "image": "art17.png"
   },
   {
+    "prompt": "I failed to create a prompt for this day...",
+    "image": "art10.png"
+  },
+  {
     "prompt": "Fish walking",
     "image": "art18.png"
   },
