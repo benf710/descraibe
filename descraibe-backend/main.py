@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 import os
 from hashlib import sha256
@@ -23,7 +25,7 @@ def generate_images(prompt: str) -> list:
     return response['data']
 
 
-def get_selection(data: list) -> dict:
+def get_selection(data: list) -> dict | None:
     while True:
         for id, url in enumerate([i['url'] for i in data], start=1):
             print(f'{id}: {url}')
@@ -35,6 +37,8 @@ def get_selection(data: list) -> dict:
                 return selection
             except (ValueError, IndexError):
                 print('Invalid Input!')
+        else:
+            return None
 
 
 def save_image(url: str) -> Path:
@@ -67,12 +71,12 @@ def main():
         for obj in data:
             webbrowser.open(obj['url'])
         choice = get_selection(data)
-
-        image_file = save_image(choice['url'])
-        prompt_data.append({
-            'prompt': prompt,
-            'image': image_file.name
-        })
+        if choice:
+            image_file = save_image(choice['url'])
+            prompt_data.append({
+                'prompt': prompt,
+                'image': image_file.name
+            })
 
         with open(DATA_FILE, 'w') as f:
             json.dump(prompt_data, f, indent=2)
