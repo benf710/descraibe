@@ -57,11 +57,11 @@ def main():
         prompt_data = json.load(f)
 
     # Archive old art
-    # for art_file in ART_PATH.iterdir():
-    #     if art_file.name.startswith('art'):
-    #         with zipfile.ZipFile(ART_ARCHIVE, 'a', compresslevel=6) as zip:
-    #             zip.write(art_file, art_file.name)
-    #         art_file.unlink()
+    for art_file in ART_PATH.iterdir():
+        if art_file.name.startswith('art'):
+            with zipfile.ZipFile(ART_ARCHIVE, 'a', compresslevel=6) as zip:
+                zip.write(art_file, art_file.name)
+            art_file.unlink()
 
     while running:
         prompt = input('> ')

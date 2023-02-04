@@ -3,5 +3,10 @@
     "configLevel": "project",
     "useProfile": true,
     "profileName": "descraibe-bpc"
+  },
+  "qa": {
+    "configLevel": "project",
+    "useProfile": true,
+    "profileName": "descraibe-bpc"
   }
 }

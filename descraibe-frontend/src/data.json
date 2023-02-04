@@ -190,5 +190,17 @@
   {
     "prompt": "the first flight",
     "image": "art_9a2da5edd370723cc36dd530903917b5e16c853f51d071cc8e03394319c1a552.png"
+  },
+  {
+    "prompt": "oktoberfest",
+    "image": "art_c74b62025c1306508b90502117bc01f1cb33c3605e15031b5948ba90215433a9.png"
+  },
+  {
+    "prompt": "cthulhu in a dress",
+    "image": "art_9271d9348418f35cd914b8de98b334e54e55aa9ddbda81f874cdddce58cddee3.png"
+  },
+  {
+    "prompt": "tokyo party",
+    "image": "art_2bb64e0237b5d08bca6fde752a9415329c5d73fe17cdf8e4e4c6b95925558a9a.png"
   }
 ]
