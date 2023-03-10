@@ -18,7 +18,7 @@
       "providerPlugin": "awscloudformation",
       "type": "manual",
       "output": {},
-      "lastPushTimeStamp": "2023-01-03T01:12:23.414Z",
+      "lastPushTimeStamp": "2023-02-04T23:37:03.710Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-descraibe-dev-154321-deployment/amplify-cfn-templates/hosting/amplifyhosting-template.json",
         "logicalId": "hostingamplifyhosting"
