@@ -140,6 +140,7 @@
 <script>
 import Chart from 'chart.js/auto'
 import PromptData from '@/data.json'
+import { toHandlers } from 'vue';
 
 export default {
   computed: {
@@ -159,7 +160,7 @@ export default {
     },
     prompt() {
       let promptIndex = this.getToday() - this.gameDateOrigin
-      return this.promptMap[promptIndex].prompt.toUpperCase()
+      return this.promptMap[this.promptMap.length-1].prompt.toUpperCase()
     },
     art() {
       let promptIndex = this.getToday() - this.gameDateOrigin
