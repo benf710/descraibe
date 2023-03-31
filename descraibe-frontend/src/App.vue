@@ -159,7 +159,7 @@ export default {
     },
     prompt() {
       let promptIndex = this.getToday() - this.gameDateOrigin
-      return this.promptMap[this.promptMap.length-1].prompt.toUpperCase()
+      return this.promptMap[promptIndex].prompt.toUpperCase()
     },
     art() {
       let promptIndex = this.getToday() - this.gameDateOrigin
