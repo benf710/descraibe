@@ -154,11 +154,11 @@ export default {
     },
     prompt() {
       let promptIndex = this.getToday() - this.gameDateOrigin
-      return this.promptMap[this.promptMap.length-1].prompt.toUpperCase()
+      return this.promptMap[promptIndex].prompt.toUpperCase()
     },
     art() {
       let promptIndex = this.getToday() - this.gameDateOrigin
-      return "/" + this.promptMap[this.promptMap.length-1].image
+      return "/" + this.promptMap[promptIndex].image
     }
   },
   data() {
@@ -184,7 +184,7 @@ export default {
         maxStreak: 0
       },
       showOverlay: false,
-      gameDateOrigin: 19344+101,
+      gameDateOrigin: 19344,
       timeToNextGame: "--:--:--",
       devModeResetButton:"" //var for the dev mode trash can button
     }
