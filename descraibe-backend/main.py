@@ -77,9 +77,9 @@ def get_prompt() -> None:
         
         prompt = Prompt(prompt_text)
 
-        print(f"Prompt      : {prompt.text}")
-        print(f"Letter Count: {prompt.letter_count}")
-        print(f"Difficulty  : {prompt.difficulty:.2f} (1 = minimum | 1.75 = average | 3 = hard) ex: (ASTRO CLOUD = 1.30 | SAD CLOWN IN CHINATOWN = 1.73 | MAJESTIC FJORD VIEWS = 2.56 | WORD WIZZARDS = 3.17)\n")
+        print(f"Prompt      : {Fore.GREEN}{prompt.text}{Style.RESET_ALL}")
+        print(f"Letter Count: {Fore.GREEN}{prompt.letter_count}{Style.RESET_ALL}")
+        print(f"Difficulty  : {Fore.GREEN}{prompt.difficulty:.2f}{Style.RESET_ALL} (1 = minimum | 1.75 = average | 3 = hard) ex: (ASTRO CLOUD = 1.30 | SAD CLOWN IN CHINATOWN = 1.73 | MAJESTIC FJORD VIEWS = 2.56 | WORD WIZZARDS = 3.17)\n")
         
         if input("Enter (y) to accept prompt, or (n) to reject prompt:").strip().lower() == 'y':
             return prompt
@@ -109,7 +109,7 @@ def main():
         if choice:
             image_file = save_image(choice['url'])
             prompt_data.append({
-                'prompt': prompt,
+                'prompt': prompt.text,
                 'image': image_file.name
             })
 
