@@ -11,10 +11,30 @@ import webbrowser
 import requests
 import zipfile
 
+import colorama
+from colorama import Fore, Style
+from resources.prompt import Prompt
+
 ART_PATH = Path(__file__).parent.parent / 'descraibe-frontend/public'
 ART_ARCHIVE = Path(__file__).parent.parent / 'descraibe-frontend/archive/art.zip'
 DATA_FILE = Path(__file__).parent.parent / 'descraibe-frontend/src/data.json'
 
+
+def generate_prompt() -> str:
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt="write a short prompt for a weird but interesting AI generated image that contains less than 15 total characters not including any spaces.",
+        max_tokens=15,
+        temperature=1,
+        n=1
+    )
+    print(f"Prompt Tokens    : {response['usage']['prompt_tokens']}")
+    print(f"Completion Tokens: {response['usage']['completion_tokens']}")
+    print(f"Total Tokens Used: {response['usage']['total_tokens']}\n")
+    
+    prompt_text = response['choices'][0]['text']
+    
+    return prompt_text
 
 def generate_images(prompt: str) -> list:
     response = openai.Image.create(
@@ -48,6 +68,21 @@ def save_image(url: str) -> Path:
         f.write(data)
     return art_file
 
+def get_prompt() -> None:
+    while True:
+        if input(f"\n\nEnter (a) to auto generate prompts using davinci-003 {Fore.RED}(may use up to 27 OpenAI tokens per prompt){Style.RESET_ALL}, or (m) to manually enter a prompt:").strip().lower() == 'a':
+            prompt_text = generate_prompt() 
+        else:
+            prompt_text = input('manual prompt > ')
+        
+        prompt = Prompt(prompt_text)
+
+        print(f"Prompt      : {Fore.GREEN}{prompt.text}{Style.RESET_ALL}")
+        print(f"Letter Count: {Fore.GREEN}{prompt.letter_count}{Style.RESET_ALL}")
+        print(f"Difficulty  : {Fore.GREEN}{prompt.difficulty:.2f}{Style.RESET_ALL} (1 = minimum | 1.75 = average | 3 = hard) ex: (ASTRO CLOUD = 1.30 | SAD CLOWN IN CHINATOWN = 1.73 | MAJESTIC FJORD VIEWS = 2.56 | WORD WIZZARDS = 3.17)\n")
+        
+        if input("Enter (y) to accept prompt, or (n) to reject prompt:").strip().lower() == 'y':
+            return prompt
 
 def main():
     """Generates a new images for data.json prompts, and saves the image files."""
@@ -64,17 +99,17 @@ def main():
     #         art_file.unlink()
 
     while running:
-        prompt = input('> ')
-        if prompt.strip().lower() == 'exit':
-            return
-        data = generate_images(prompt)
+        prompt = get_prompt()
+
+        data = generate_images(prompt.text)
+
         for obj in data:
             webbrowser.open(obj['url'])
         choice = get_selection(data)
         if choice:
             image_file = save_image(choice['url'])
             prompt_data.append({
-                'prompt': prompt,
+                'prompt': prompt.text,
                 'image': image_file.name
             })
 
