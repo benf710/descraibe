@@ -10,15 +10,41 @@
           </svg>
         </button> -->
         <button type="button" @click="renderOverlay()" class="menu-button">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="4 4 24 24" width="24" class="game-icon" data-testid="icon-statistics">
-            <path fill="var(--color-tone-1)" d="M20.6666 14.8333V5.5H11.3333V12.5H4.33325V26.5H27.6666V14.8333H20.6666ZM13.6666 7.83333H18.3333V24.1667H13.6666V7.83333ZM6.66659 14.8333H11.3333V24.1667H6.66659V14.8333ZM25.3333 24.1667H20.6666V17.1667H25.3333V24.1667Z">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="4 4 24 24" width="24" class="game-icon"
+            data-testid="icon-statistics">
+            <path fill="var(--color-tone-1)"
+              d="M20.6666 14.8333V5.5H11.3333V12.5H4.33325V26.5H27.6666V14.8333H20.6666ZM13.6666 7.83333H18.3333V24.1667H13.6666V7.83333ZM6.66659 14.8333H11.3333V24.1667H6.66659V14.8333ZM25.3333 24.1667H20.6666V17.1667H25.3333V24.1667Z">
             </path>
           </svg>
         </button>
         <button v-if="devMode" type="button" @click="clearStorage()" class="menu-button">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-            <path fill="var(--color-tone-1)" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+            viewBox="0 0 16 16">
+            <path
+              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+            <path fill="var(--color-tone-1)"
+              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+          </svg>
+        </button>
+        <button v-if="devMode" type="button" @click="changeGameDate(-1)" class="menu-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rewind-btn"
+            viewBox="0 0 16 16">
+            <path fill="var(--color-tone-1)"
+              d="M7.21 5.093A.5.5 0 0 1 8 5.5v1.886l3.21-2.293A.5.5 0 0 1 12 5.5v5a.5.5 0 0 1-.79.407L8 8.614V10.5a.5.5 0 0 1-.79.407l-3.5-2.5a.5.5 0 0 1 0-.814l3.5-2.5Z" />
+            <path
+              d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4Z" />
+          </svg>
+        </button>
+        <span v-if="devMode" class="date-text">
+          {{ gameDate.toLocaleString() }}
+        </span>
+        <button v-if="devMode" type="button" @click="changeGameDate(1)" class="menu-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-fast-forward-btn" viewBox="0 0 16 16">
+            <path fill="var(--color-tone-1)"
+              d="M8.79 5.093A.5.5 0 0 0 8 5.5v1.886L4.79 5.093A.5.5 0 0 0 4 5.5v5a.5.5 0 0 0 .79.407L8 8.614V10.5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5Z" />
+            <path
+              d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4Z" />
           </svg>
         </button>
       </div>
@@ -26,15 +52,15 @@
   </header>
   <main class="main">
     <div class="status">
-        <div class="status-box status-text-color" id="statusText">
-          GUESSES: {{gameData.guessesRemaining}}
-        </div>
-        <div class="status-box status-text-color">
-          TIME: {{ minutesTaken }}:{{ secondsTaken }}
-        </div>
+      <div class="status-box status-text-color" id="statusText">
+        GUESSES: {{ gameData.guessesRemaining }}
       </div>
+      <div class="status-box status-text-color">
+        TIME: {{ minutesTaken }}:{{ secondsTaken }}
+      </div>
+    </div>
     <div class="pic">
-      <img class="art" :src="art"/>
+      <img class="art" :src="artFilePath" />
     </div>
     <div class="end-screen-dimmer" @click="closeOverlay" v-if="showOverlay">
       <div class="end-modal">
@@ -92,14 +118,13 @@
     </div>
     <div class="answer-section">
       <div class="prompt">
-        <div class="word" v-for="wordLength of promptSpaces">
-          <div class="letter-holder"  v-for="index in wordLength" :key="index">
-            <div class="letter"></div>
-            <div class="bar status-background-color"></div>
+        <template v-for="letter in promptData" :key="letter.index">
+          <div class="letter-holder" v-if="letter.value !== ' '">
+            <div class="letter" >{{ letter.value }}</div>
           </div>
-          <div class="space"></div>
+          <div class="space" v-else></div>
+        </template>
         </div>
-      </div>
     </div>
     <div class="keyboard">
       <button class="key" data-key="Q" @click="keyClick">Q</button>
@@ -140,14 +165,25 @@
 <script>
 import Chart from 'chart.js/auto'
 import PromptData from '@/data.json'
+import { DateTime } from 'luxon'
+
+
+const gameDateOrigin = DateTime.local(2022, 12, 18)
+
+const guessClassMap = {
+  3: "status-three",
+  2: "status-two",
+  1: "status-one",
+  0: "status-one"
+}
 
 export default {
   computed: {
-    promptSpaces(){
+    promptSpaces() {
       const promptWordsLengths = [];
       let nextWordLength = 0;
-      for (const char of this.prompt){
-        if (char == " "){
+      for (const char of this.prompt) {
+        if (char == " ") {
           promptWordsLengths.push(nextWordLength)
           nextWordLength = 0
         } else {
@@ -157,43 +193,30 @@ export default {
       promptWordsLengths.push(nextWordLength)
       return promptWordsLengths
     },
-    prompt() {
-      let promptIndex = this.getToday() - this.gameDateOrigin
-      return this.promptMap[promptIndex].prompt.toUpperCase()
-    },
-    art() {
-      let promptIndex = this.getToday() - this.gameDateOrigin
-      return "/" + this.promptMap[promptIndex].image
-    },
     devMode() {
       return import.meta.env.MODE === 'development'
     }
   },
   data() {
     return {
-      promptMap: PromptData,
-      startingGuesses: 3,
+      prompt: "",
+      artFilePath: undefined,
       timer: undefined,
       minutesTaken: "--",
       secondsTaken: "--",
-      guessClassMap: {
-        3: "status-three",
-        2: "status-two",
-        1: "status-one",
-        0: "status-one"
-      },
+      gameDate: DateTime.now(),
       gameData: {
         active: true,
         history: [],
         startTime: undefined,
+        timeTaken: undefined,
         guessesRemaining: 3,
         guesses: [],
         currentStreak: 0,
         maxStreak: 0
       },
       showOverlay: false,
-      gameDateOrigin: 19344,
-      timeToNextGame: "--:--:--",
+      timeToNextGame: "--:--:--"
     }
   },
   mounted() {
@@ -202,24 +225,32 @@ export default {
     document.addEventListener("keydown", this.keypress)
   },
   methods: {
-    keyClick(event){
+    setPrompt(){
+      let promptIndex = Math.floor(this.gameDate.diff(gameDateOrigin, 'days').as('days'))
+      this.prompt = PromptData[promptIndex].prompt.toUpperCase()
+    },
+    setArtPath(){
+      let promptIndex = Math.floor(this.gameDate.diff(gameDateOrigin, 'days').as('days'))
+      this.artFilePath = "/" + PromptData[promptIndex].image
+    },
+    keyClick(event) {
       let keyClicked = event.target.dataset.key.toUpperCase()
       this.registerKeyPress(keyClicked)
     },
     keypress(event) {
       let keyClicked = event.key
-      if (keyClicked.match(/^[a-z]$/)){
+      if (keyClicked.match(/^[a-z]$/)) {
         this.registerKeyPress(keyClicked.toUpperCase())
       }
     },
-    registerKeyPress(char){
+    registerKeyPress(char) {
       // Game is already over
       if (!this.gameData.active) return
 
-      
+
       // Already guessed this letter
       const keyboardKey = document.querySelector(`.key[data-key="${char}"]`)
-      if (keyboardKey.dataset.checked == "true"){
+      if (keyboardKey.dataset.checked == "true") {
         return
       }
 
@@ -227,18 +258,18 @@ export default {
 
       this.checkGuess(char)
 
-      if (this.checkGameOver()){
+      if (this.checkGameOver()) {
         this.endGame()
       }
     },
-    checkGuess(char){
+    checkGuess(char) {
       const keyboardKey = document.querySelector(`.key[data-key="${char}"]`)
       // Disable this key
       keyboardKey.dataset.checked = "true"
 
       if (this.prompt.includes(char)) {
         keyboardKey.classList.add("correct")
-        this.revealLetters(char)
+        this.revealLetter(char)
       } else {
         keyboardKey.classList.add("wrong")
         this.subtractGuess()
@@ -248,32 +279,32 @@ export default {
 
       this.saveGameData()
     },
-    revealLetters(char) {
-      const promptNoSpace = this.prompt.replaceAll(" ", "")
-      for (let i = 0; i < promptNoSpace.length; i++) {
-        if (char === promptNoSpace[i]) {
+    revealLetter(char) {
+      const promptLetters = this.prompt.replaceAll(" ", "")
+      for (let i = 0; i < promptLetters.length; i++) {
+        if (char === promptLetters[i]) {
           let revealChar = document.querySelectorAll("div.letter")[i]
           revealChar.dataset.valueset = "true"
           revealChar.textContent = char
           if (this.checkGameLost()) {
-            revealChar.style.color= "hsl(1, 0%, 50%)";
+            revealChar.style.color = "hsl(1, 0%, 50%)";
           }
         }
       }
     },
-    subtractGuess(){
+    subtractGuess() {
       this.gameData.guessesRemaining = this.gameData.guessesRemaining - 1
     },
     removePreviousStatusColorClass() {
       const elements = document.querySelectorAll(".status-background-color, .status-text-color")
       elements.forEach(element => {
-        element.classList.remove(this.guessClassMap[this.gameData.guessesRemaining + 1])
+        element.classList.remove(guessClassMap[this.gameData.guessesRemaining + 1])
       })
     },
     addCurrentStatusColorClass() {
       const elements = document.querySelectorAll(".status-background-color, .status-text-color")
       elements.forEach(element => {
-        element.classList.add(this.guessClassMap[this.gameData.guessesRemaining])
+        element.classList.add(guessClassMap[this.gameData.guessesRemaining])
       })
     },
     checkGameWon() {
@@ -283,7 +314,7 @@ export default {
     checkGameLost() {
       if (this.gameData.guessesRemaining === 0) return true
     },
-    checkGameOver() { 
+    checkGameOver() {
       if (this.checkGameLost()) return true
       if (this.checkGameWon()) return true
     },
@@ -292,17 +323,17 @@ export default {
       this.gameData.active = false
       this.gameData.timeTaken = Number(this.secondsTaken) + (Number(this.minutesTaken) * 60)
       this.stopTimer()
-      const lettersNotGuessed = [...this.prompt].filter( char => !this.gameData.guesses.includes(char));
+      const lettersNotGuessed = [...this.prompt].filter(char => !this.gameData.guesses.includes(char));
       for (const letterIndex in lettersNotGuessed) {
-        this.revealLetters(lettersNotGuessed[letterIndex]);
+        this.revealLetter(lettersNotGuessed[letterIndex]);
       }
-      
+
 
       // Add game to game history
       this.gameData.history.push({
         gameWon: gameWon,
         timeTaken: this.gameData.timeTaken,
-        date: this.getToday()
+        date: this.gameDate.toISODate(),
       })
 
       // Update streaks
@@ -319,28 +350,41 @@ export default {
       this.saveGameData()
     },
     initializeGame() {
-      const gameData = JSON.parse(localStorage.getItem("descraibe-game-data"))
-      if (gameData){
-        if (gameData.currentStreak !== undefined) this.gameData.currentStreak = gameData.currentStreak
-        if (gameData.maxStreak !== undefined) this.gameData.maxStreak = gameData.maxStreak
-        if (gameData.history){
-          this.gameData.history = gameData.history
-          let todayGame = gameData.history.find(obj => obj.date === this.getToday())
+      this.setPrompt()
+      this.setArtPath()
+      const savedGameData = JSON.parse(localStorage.getItem("descraibe-game-data"))
+      if (savedGameData) {
+        if (savedGameData.currentStreak !== undefined) this.gameData.currentStreak = savedGameData.currentStreak
+        if (savedGameData.maxStreak !== undefined) this.gameData.maxStreak = savedGameData.maxStreak
+        if (savedGameData.history) {
+          this.gameData.history = savedGameData.history
+          let todayGame = savedGameData.history.find(obj => obj.date === this.gameDate.toISODate())
           if (todayGame) {
-            if (gameData.active !== undefined) this.gameData.active = gameData.active
-            if (gameData.startTime !== undefined) this.gameData.startTime = gameData.startTime
-            if (gameData.timeTaken !== undefined) this.gameData.timeTaken = gameData.timeTaken
+            if (savedGameData.active !== undefined) this.gameData.active = savedGameData.active
+            if (savedGameData.startTime !== undefined) this.gameData.startTime = savedGameData.startTime
+            if (savedGameData.timeTaken !== undefined) this.gameData.timeTaken = savedGameData.timeTaken
 
-            if (gameData.guesses !== undefined) {
-              this.gameData.guesses = gameData.guesses
-              gameData.guesses.forEach(char => {
+            if (savedGameData.guesses !== undefined) {
+              this.gameData.guesses = savedGameData.guesses
+              savedGameData.guesses.forEach(char => {
                 this.checkGuess(char)
               })
+            }
+          } else {
+            // Reset game data
+            this.timer = undefined
+            this.minutesTaken = "--"
+            this.secondsTaken = "--"
+            this.showOverlay = false
+            this.gameData.active = true
+            this.gameData.startTime = undefined
+            this.gameData.timeTaken = undefined
+            this.gameData.guesses = []
+            this.gameData.guessesRemaining = 3
           }
-        } 
         }
       }
-      
+
       if (this.gameData.active) {
         this.startTimer()
       } else {
@@ -370,12 +414,12 @@ export default {
     closeOverlay(event) {
       if (event.target === document.querySelector(".end-screen-dimmer")) this.showOverlay = false
     },
-    renderOverlay(){
+    renderOverlay() {
       this.showOverlay = true
     },
-    renderChart(){
+    renderChart() {
       const chrt = document.getElementById('timeDistChart')
-      if (this.gameData.history.length >= 0){
+      if (this.gameData.history.length >= 0) {
         new Chart(chrt, {
           type: 'line',
           data: {
@@ -419,11 +463,12 @@ export default {
     getMaxStreak() {
       return this.gameData.maxStreak
     },
-    clearStorage(){
+    clearStorage() {
       localStorage.removeItem("descraibe-game-data")
     },
-    getToday(){
-      return Math.floor(Date.now() / 1000 / 60 / 60 / 24)
+    changeGameDate(n_days){
+      this.gameDate = this.gameDate.plus({ days: n_days})
+      this.initializeGame()
     },
     trackTimeToNextGame() {
       let msToMidnight = this.msTillNextUtcDay()
@@ -436,13 +481,13 @@ export default {
         hour = Math.floor(msToMidnight / 1000 / 60 / 60).toString().padStart(2, "0")
         minute = Math.floor(msToMidnight / 1000 / 60 % 60).toString().padStart(2, "0")
         second = Math.floor(msToMidnight / 1000 % 60).toString().padStart(2, "0")
-      this.timeToNextGame = `${hour}:${minute}:${second}`
+        this.timeToNextGame = `${hour}:${minute}:${second}`
       }, 1000)
     },
     msTillNextUtcDay() {
       const msInDay = 86400000; // 24 * 60 * 60 * 1000
       const date = Date.now() // time since midnight on January 1, 1970, UTC (ecmascript epoch)
-      const msNextDay = Math.ceil(date/msInDay) * msInDay; //gets the time of in ms of the start of the next utc day in ecmascript epoch "format"
+      const msNextDay = Math.ceil(date / msInDay) * msInDay; //gets the time of in ms of the start of the next utc day in ecmascript epoch "format"
       return msNextDay - date; //Subtracts current time from start of next day
     }
   }
@@ -451,181 +496,218 @@ export default {
 
 
 <style>
-  .title {
-    color: var(--color-tone-1);
-    text-align: center;
-    font-size: 1.25em;
-    margin-bottom: .25em;
-    font-weight: bold;
-    flex-grow: 2;
-  }
-  .main {
-    display: flex; 
-    min-height: 75vh;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center;
-  }
-  .pic {
-    flex-grow: 1;
-  }
-  .art {
-    max-width: 80%;
-    height: auto;
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
-  }
-  .menu {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    border-bottom: 1px solid var(--color-tone-1);
-    margin-bottom: 2em;
-    
-  }
-  .menu-buttons {
-    display: flex;
-    justify-content: flex-end;
-  }
-  .menu-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  .end-screen-dimmer {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    overflow: auto;
-    background-color: hsl(1, 0%, 10%, 80%);
-    width: 100%;
-    height: 100%;
-  }
-  .end-modal {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 80%;
-    margin: auto;
-    border: 1px solid var(--color-tone-1);
-    background-color: var(--background-color);
-    color: var(--color-tone-1);
-    border-radius: .25em;
-  }
-  .modal-container {
-    margin-left: 2em;
-    margin-right: 2em;
-    margin: 0em 2em 2em 2em;
-  }
-  .modal-title {
-    text-align: center;
-    margin-bottom: 2em;
-    margin-top: 2.25em;
-  }
-  .modal-close {
-    cursor: pointer;
-    margin-left: auto;
-    margin-right: .5em;
-    font-size: 2em;
-  }
-  .general-stats {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
-  .stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1.5em;
-    margin: 0em .3em 1em .3em;
-  }
-  .stat-label {
-    display: flex;
-    text-align: center;
-    font-size: .4em;
-    max-width: 80%;
-  }
-  .status {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 1em;
-  }
-  .status-box {
-    padding: 0em 1em 0em 1em;
-    border: 1px solid var(--color-tone-1);
-  }
-  .status-text-color {
-    color: hsl(var(--statusHue, 110), 33%, 50%);
-    font-size: 1.5em;
-  }
-  .status-background-color {
-    background-color: hsl(var(--statusHue, 110), 33%, 50%);
-  }
-  .status-two {
-    --statusHue: 66
-  }
-  .status-one {
-    --statusHue: 0
-  }
-  .answer-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;
-    margin-bottom: 1.5rem;
-    gap: 1.5rem;
-    justify-content: center; 
-    align-items: center;
-    flex-grow: 1;
-  }
-  .prompt {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: .9em;
-  }
-  .word {
-    display: inherit;
-  }
-  .letter-holder {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-  }
-  .letter {
-    width: auto;
-    height:1em;
-    font-size: 2em;
-    font-weight: bold;
-    color: var(--color-tone-1);
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-  }
-  .bar {
-    width: 1em;
-    height: 3px;
-    margin: .2em;
-  }
-  .space {
-    width: .5em;
+.date-text {
+  color: var(--color-tone-1);
+  padding: .1em;
+  border: 1px solid var(--color-tone-1); 
+  border-radius: .25em;
+}
+.title {
+  color: var(--color-tone-1);
+  position: relative;
+  text-align: center;
+  font-size: 1.25em;
+  margin-bottom: .25em;
+  font-weight: bold;
+  flex-grow: 2;
+}
 
-  }
-  *, *::after, *::before {
+.main {
+  display: flex;
+  min-height: 75vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pic {
+  flex-grow: 1;
+}
+
+.art {
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  border-bottom: 1px solid var(--color-tone-1);
+  margin-bottom: 2em;
+
+}
+
+.menu-buttons {
+  position: absolute;
+  top: auto;
+  right: 0px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.end-screen-dimmer {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  background-color: hsl(1, 0%, 10%, 80%);
+  width: 100%;
+  height: 100%;
+}
+
+.end-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 80%;
+  margin: auto;
+  border: 1px solid var(--color-tone-1);
+  background-color: var(--background-color);
+  color: var(--color-tone-1);
+  border-radius: .25em;
+}
+
+.modal-container {
+  margin-left: 2em;
+  margin-right: 2em;
+  margin: 0em 2em 2em 2em;
+}
+
+.modal-title {
+  text-align: center;
+  margin-bottom: 2em;
+  margin-top: 2.25em;
+}
+
+.modal-close {
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: .5em;
+  font-size: 2em;
+}
+
+.general-stats {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5em;
+  margin: 0em .3em 1em .3em;
+}
+
+.stat-label {
+  display: flex;
+  text-align: center;
+  font-size: .4em;
+  max-width: 80%;
+}
+
+.status {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+}
+
+.status-box {
+  padding: 0em 1em 0em 1em;
+  border: 1px solid var(--color-tone-1);
+}
+
+.status-text-color {
+  color: hsl(var(--statusHue, 110), 33%, 50%);
+  font-size: 1.5em;
+}
+
+.status-background-color {
+  background-color: hsl(var(--statusHue, 110), 33%, 50%);
+}
+
+.status-two {
+  --statusHue: 66
+}
+
+.status-one {
+  --statusHue: 0
+}
+
+.answer-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.prompt {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: .9em;
+}
+
+.letter-holder {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.letter {
+  width: auto;
+  height: 1em;
+  font-size: 2em;
+  font-weight: bold;
+  color: var(--color-tone-1);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.bar {
+  width: 1em;
+  height: 3px;
+  margin: .2em;
+}
+
+.space {
+  width: .5em;
+
+}
+
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
+
 .keyboard {
   display: grid;
   grid-template-columns: repeat(20, minmax(auto, 2em));
@@ -633,6 +715,7 @@ export default {
   gap: .3em;
   justify-content: center;
 }
+
 .key {
   font-size: inherit;
   grid-column: span 2;
@@ -641,11 +724,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: hsl(
-    var(--hue, 200), 
-    var(--saturation, 1%), 
-    calc(var(--lightness-offset, 0%) + var(--lightness, 51%))
-  );
+  background-color: hsl(var(--hue, 200),
+      var(--saturation, 1%),
+      calc(var(--lightness-offset, 0%) + var(--lightness, 51%)));
   color: white;
   fill: white;
   text-transform: uppercase;
@@ -653,25 +734,31 @@ export default {
   cursor: pointer;
   user-select: none;
 }
+
 .key.large {
   grid-column: span 3;
 }
+
 .hidden {
   visibility: hidden;
 }
-.key > svg {
+
+.key>svg {
   width: 1.75em;
   height: 1.75em;
 }
-.key:hover, .key:focus {
+
+.key:hover,
+.key:focus {
   --lightness-offset: 10%;
 }
+
 .key.wrong {
   --lightness: 23%;
 }
+
 .key.correct {
- --hue: 115;
- --saturation: 29%;
- --lightness: 43%;
-}
-</style>
+  --hue: 115;
+  --saturation: 29%;
+  --lightness: 43%;
+}</style>
